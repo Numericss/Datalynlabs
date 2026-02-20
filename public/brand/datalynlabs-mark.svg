@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" role="img" aria-label="Datalynlabs mark">
+  <g stroke="#00d4ff" stroke-width="8" fill="none" stroke-linecap="round" opacity="0.95">
+    <ellipse cx="128" cy="128" rx="108" ry="36" />
+    <ellipse cx="128" cy="128" rx="108" ry="36" transform="rotate(45 128 128)" />
+    <ellipse cx="128" cy="128" rx="108" ry="36" transform="rotate(90 128 128)" />
+    <ellipse cx="128" cy="128" rx="108" ry="36" transform="rotate(135 128 128)" />
+  </g>
+  <g fill="#00d4ff" opacity="0.98">
+    <polygon points="128,54 145,102 196,88 160,124 196,160 145,146 128,202 111,146 60,160 96,124 60,88 111,102" />
+    <ellipse cx="128" cy="128" rx="56" ry="20" />
+  </g>
+</svg>

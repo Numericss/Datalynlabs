@@ -1,6 +1,6 @@
-# Datalylabs Homepage
+# Datalynlabs Homepage
 
-Dark, conversion-focused SaaS landing page for Datalylabs (AI voice automation agency), built with Next.js App Router and Tailwind CSS v4 utilities.
+Dark, conversion-focused SaaS landing page for Datalynlabs (AI voice automation agency), built with Next.js App Router and Tailwind CSS v4 utilities.
 
 ## Booking CTA
 

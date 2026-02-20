@@ -86,7 +86,7 @@ export function ProofSection({ metrics, rows }: ProofSectionProps) {
     <section id="results" className="section-container section-space">
       <p className="kicker">Performance</p>
       <h2 className="mt-3 max-w-3xl text-3xl font-semibold tracking-tight text-white sm:text-4xl">
-        Performance Gains From Teams Running Datalylabs Systems
+        Performance Gains From Teams Running Datalynlabs Systems
       </h2>
 
       <div className="mt-10 grid gap-4 md:grid-cols-3">

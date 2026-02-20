@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import type { NavItem } from "@/lib/home-content";
@@ -30,8 +31,15 @@ export function StickyNav({ items, bookingUrl }: StickyNavProps) {
     >
       <div className="section-container flex h-16 items-center justify-between gap-3 sm:h-[4.5rem]">
         <Link href="/" className="focus-ring inline-flex min-h-11 items-center rounded-md pr-2">
-          <span aria-hidden className="mr-2 h-2.5 w-2.5 rounded-full bg-cyan-400 shadow-[0_0_14px_rgba(0,212,255,0.85)]" />
-          <span className="text-sm font-semibold tracking-[0.03em] text-white sm:text-base">Datalylabs</span>
+          <Image
+            src="/brand/datalynlabs-mark.png"
+            alt="Datalynlabs logo"
+            width={24}
+            height={24}
+            className="mr-2 h-5 w-5 drop-shadow-[0_0_12px_rgba(0,212,255,0.75)] sm:h-[22px] sm:w-[22px]"
+            unoptimized
+          />
+          <span className="text-sm font-semibold tracking-[0.03em] text-white sm:text-base">Datalynlabs</span>
         </Link>
 
         <nav aria-label="Primary" className="hidden items-center gap-1 text-sm text-slate-300 md:flex">

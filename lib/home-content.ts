@@ -66,7 +66,7 @@ export const heroStats: HeroStat[] = [
 ];
 
 export const heroConversation: string[] = [
-  "Agent: Thanks for calling Datalylabs. Are you looking for inbound call coverage or outbound follow-up?",
+  "Agent: Thanks for calling Datalynlabs. Are you looking for inbound call coverage or outbound follow-up?",
   "Caller: Inbound. We miss calls after hours and lose high-intent leads.",
   "Agent: Understood. I can qualify the request, collect details, and route urgent calls live right now.",
   "Caller: Perfect. Please schedule a strategy call for implementation.",

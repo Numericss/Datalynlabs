@@ -151,12 +151,6 @@ export function RoiCalculator({ bookingUrl }: RoiCalculatorProps) {
         </div>
       </div>
 
-      <Reveal delayMs={120} className="mt-5 rounded-xl border border-cyan-300/20 bg-cyan-400/10 p-3">
-        <p className="text-xs leading-relaxed text-slate-200">
-          Assumptions: AI runtime = $0.10/min, monthly agent cost = $4,200, recovered capacity = 22% of baseline staff
-          cost, close-rate lift = clamp(close rate - 22%, 0% to 35%), recovered revenue = calls × lift × $24.
-        </p>
-      </Reveal>
     </section>
   );
 }

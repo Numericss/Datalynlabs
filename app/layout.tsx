@@ -8,9 +8,14 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Datalylabs | AI Voice Agent Systems",
+  title: "Datalynlabs | AI Voice Agent Systems",
   description:
-    "Datalylabs builds AI voice agent systems that capture more leads, automate repetitive conversations, and protect revenue at scale.",
+    "Datalynlabs builds AI voice agent systems that capture more leads, automate repetitive conversations, and protect revenue at scale.",
+  icons: {
+    icon: "/brand/datalynlabs-mark.png",
+    shortcut: "/brand/datalynlabs-mark.png",
+    apple: "/brand/datalynlabs-mark.png",
+  },
 };
 
 export default function RootLayout({

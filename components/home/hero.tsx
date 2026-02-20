@@ -19,7 +19,7 @@ export function Hero({ stats, conversation }: HeroProps) {
             Scale Customer Conversations Without Scaling Headcount and Protect Every Lead.
           </h1>
           <p className="mt-6 max-w-xl text-base leading-relaxed text-slate-300 sm:text-lg">
-            Datalylabs designs voice AI systems that answer instantly, qualify intent, and move high-value calls into
+            Datalynlabs designs voice AI systems that answer instantly, qualify intent, and move high-value calls into
             booked revenue without increasing headcount.
           </p>
 
