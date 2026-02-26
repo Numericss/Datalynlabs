@@ -1,0 +1,44 @@
+/* ─── Layout utilities ──────────────────────────────────────────────────────── */
+
+.section-container {
+  margin-inline: auto;
+  width: 100%;
+  max-width: 1240px;
+  padding-inline: 1rem;
+}
+
+@media (min-width: 640px) {
+  .section-container {
+    padding-inline: 1.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .section-container {
+    padding-inline: 2rem;
+  }
+}
+
+.section-space {
+  padding-block: 3.5rem;
+}
+
+@media (min-width: 1024px) {
+  .section-space {
+    padding-block: 5rem;
+  }
+}
+
+.section-band {
+  background:
+    linear-gradient(180deg, rgba(18, 18, 26, 0.72), rgba(18, 18, 26, 0.68)),
+    radial-gradient(64rem 28rem at 90% 4%, rgba(0, 212, 255, 0.08), transparent 65%);
+}
+
+.grid-overlay {
+  background-image:
+    linear-gradient(rgba(30, 30, 46, 0.36) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(30, 30, 46, 0.36) 1px, transparent 1px);
+  background-size: 34px 34px;
+  mask-image: linear-gradient(to bottom, transparent, black 16%, black 84%, transparent);
+}

@@ -3,11 +3,25 @@
 import { useEffect, useRef, useState } from "react";
 
 type UseInViewOptions = {
+  /** Fraction of the element that must be visible before triggering (0–1). Default: 0.2 */
   threshold?: number;
+  /** Margin around the root viewport used to expand or shrink the intersection area. Default: "0px" */
   rootMargin?: string;
+  /** When true, stops observing after the element enters view for the first time. Default: true */
   once?: boolean;
 };
 
+/**
+ * Tracks whether a DOM element has entered the viewport using IntersectionObserver.
+ *
+ * @returns `{ ref }` — attach to the target element, and `{ inView }` — true once visible.
+ *
+ * @example
+ * function MyComponent() {
+ *   const { ref, inView } = useInView({ threshold: 0.3 });
+ *   return <div ref={ref as never} className={inView ? "visible" : "hidden"} />;
+ * }
+ */
 export function useInView({ threshold = 0.2, rootMargin = "0px", once = true }: UseInViewOptions = {}) {
   const ref = useRef<HTMLElement | null>(null);
   const [inView, setInView] = useState(false);
@@ -41,6 +55,10 @@ export function useInView({ threshold = 0.2, rootMargin = "0px", once = true }: 
   return { ref, inView };
 }
 
+/**
+ * Returns true when the user has opted into reduced motion via their OS accessibility settings.
+ * Responds to live changes to `prefers-reduced-motion`.
+ */
 export function usePrefersReducedMotion() {
   const [reduced, setReduced] = useState(false);
 

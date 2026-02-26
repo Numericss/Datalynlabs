@@ -2,6 +2,7 @@
 
 import { useMemo, useState } from "react";
 import { Reveal } from "@/components/home/reveal";
+import { ROI } from "@/lib/constants";
 
 const CURRENCY = new Intl.NumberFormat("en-US", {
   style: "currency",
@@ -26,12 +27,11 @@ export function RoiCalculator({ bookingUrl }: RoiCalculatorProps) {
   const model = useMemo(() => {
     const closeRate = closeRatePercent / 100;
 
-    const aiCost = callsPerMonth * avgCallLength * 0.1;
-    const agentMonthlyCost = 4200;
-    const baselineStaffCost = agentsOnStaff * agentMonthlyCost;
-    const recoveredCapacity = baselineStaffCost * 0.22;
-    const closeRateLift = clamp(closeRate - 0.22, 0, 0.35);
-    const estimatedRecoveredRevenue = callsPerMonth * closeRateLift * 24;
+    const aiCost = callsPerMonth * avgCallLength * ROI.AI_COST_PER_MINUTE;
+    const baselineStaffCost = agentsOnStaff * ROI.AGENT_MONTHLY_COST;
+    const recoveredCapacity = baselineStaffCost * ROI.RECOVERY_RATE;
+    const closeRateLift = clamp(closeRate - ROI.BASELINE_CLOSE_RATE, 0, ROI.MAX_CLOSE_RATE_LIFT);
+    const estimatedRecoveredRevenue = callsPerMonth * closeRateLift * ROI.AVG_DEAL_VALUE;
     const monthlySavings = Math.max(recoveredCapacity + estimatedRecoveredRevenue - aiCost, 0);
     const roundedSavings = Math.round(monthlySavings / 10) * 10;
 

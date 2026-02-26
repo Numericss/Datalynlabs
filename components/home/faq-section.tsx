@@ -2,6 +2,8 @@
 
 import { useState } from "react";
 import { Reveal } from "@/components/home/reveal";
+import { SectionHeader } from "@/components/home/section-header";
+import { ANIM } from "@/lib/constants";
 import type { FaqItem } from "@/lib/home-content";
 
 type FaqSectionProps = {
@@ -14,14 +16,17 @@ export function FaqSection({ items }: FaqSectionProps) {
   return (
     <section id="faq" className="section-band border-y border-white/10 section-space">
       <div className="section-container">
-        <p className="kicker">FAQ</p>
-        <h2 className="mt-3 max-w-4xl text-3xl font-semibold tracking-tight text-white sm:text-4xl lg:text-5xl">
-          Strategic Clarity Before You Deploy{" "}
-          <span className="text-cyan-300">AI Voice Infrastructure</span>
-        </h2>
-        <p className="mt-3 max-w-3xl text-sm leading-relaxed text-slate-300 sm:text-base">
-          Clear implementation answers for teams evaluating rollout speed, reliability, and conversion outcomes.
-        </p>
+        <SectionHeader
+          kicker="FAQ"
+          title={
+            <>
+              Strategic Clarity Before You Deploy{" "}
+              <span className="text-cyan-300">AI Voice Infrastructure</span>
+            </>
+          }
+          titleClass="mt-3 max-w-4xl text-3xl font-semibold tracking-tight text-white sm:text-4xl lg:text-5xl"
+          subtitle="Clear implementation answers for teams evaluating rollout speed, reliability, and conversion outcomes."
+        />
 
         <div className="mt-10 space-y-3">
           {items.map((item, index) => {
@@ -30,7 +35,7 @@ export function FaqSection({ items }: FaqSectionProps) {
             const triggerId = `faq-trigger-${index}`;
 
             return (
-              <Reveal key={item.question} delayMs={index * 45}>
+              <Reveal key={item.question} delayMs={index * ANIM.FAQ_STAGGER}>
                 <article className={`faq-item ${isOpen ? "faq-item-open" : ""}`}>
                   <h3>
                     <button
