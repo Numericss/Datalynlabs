@@ -1,4 +1,5 @@
 import { Reveal } from "@/components/home/reveal";
+import { ANIM } from "@/lib/constants";
 import type { HeroStat } from "@/lib/home-content";
 
 type HeroProps = {
@@ -44,7 +45,7 @@ export function Hero({ stats, conversation }: HeroProps) {
 
           <div className="mt-8 grid gap-3 sm:grid-cols-3">
             {stats.map((item, index) => (
-              <Reveal key={item.value} delayMs={index * 70} className="stat-chip">
+              <Reveal key={item.value} delayMs={index * ANIM.STAGGER} className="stat-chip">
                 <p className="text-sm font-semibold text-white sm:text-base">{item.value}</p>
                 <p className="mt-1 text-xs text-slate-400">{item.label}</p>
               </Reveal>
@@ -64,7 +65,7 @@ export function Hero({ stats, conversation }: HeroProps) {
               <p
                 key={line}
                 className="chat-line text-sm leading-relaxed text-slate-200"
-                style={{ ["--chat-delay" as string]: `${index * 120}ms` }}
+                style={{ ["--chat-delay" as string]: `${index * ANIM.CHAT_LINE_INTERVAL}ms` }}
               >
                 {line}
               </p>

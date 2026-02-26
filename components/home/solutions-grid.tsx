@@ -1,4 +1,6 @@
 import { Reveal } from "@/components/home/reveal";
+import { SectionHeader } from "@/components/home/section-header";
+import { ANIM } from "@/lib/constants";
 import type { ServiceItem } from "@/lib/home-content";
 
 type SolutionsGridProps = {
@@ -9,14 +11,14 @@ export function SolutionsGrid({ items }: SolutionsGridProps) {
   return (
     <section id="solutions" className="section-band border-y border-white/10 section-space">
       <div className="section-container">
-        <p className="kicker">Voice systems</p>
-        <h2 className="mt-3 max-w-3xl text-3xl font-semibold tracking-tight text-white sm:text-4xl">
-          Voice AI Systems Tailored To Real Business Workflows
-        </h2>
+        <SectionHeader
+          kicker="Voice systems"
+          title="Voice AI Systems Tailored To Real Business Workflows"
+        />
 
         <div className="mt-10 grid gap-4 lg:grid-cols-3">
           {items.map((item, index) => (
-            <Reveal key={item.title} delayMs={index * 70} as="article" className="lift-card p-6">
+            <Reveal key={item.title} delayMs={index * ANIM.STAGGER} as="article" className="lift-card p-6">
               <h3 className="text-xl font-semibold text-white">{item.title}</h3>
               <p className="mt-3 text-sm leading-relaxed text-slate-300">{item.body}</p>
               <ul className="mt-5 space-y-2">

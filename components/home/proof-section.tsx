@@ -2,36 +2,16 @@
 
 import { useEffect, useMemo, useState } from "react";
 import { Reveal } from "@/components/home/reveal";
+import { SectionHeader } from "@/components/home/section-header";
 import { useInView, usePrefersReducedMotion } from "@/components/home/use-in-view";
+import { parseMetric } from "@/lib/utils";
+import { ANIM } from "@/lib/constants";
 import type { ComparisonRow, ProofMetric } from "@/lib/home-content";
 
 type ProofSectionProps = {
   metrics: ProofMetric[];
   rows: ComparisonRow[];
 };
-
-type MetricFormat = {
-  target: number;
-  decimals: number;
-  prefix: string;
-  suffix: string;
-};
-
-function parseMetric(value: string): MetricFormat {
-  if (value.endsWith("%")) {
-    return { target: Number.parseFloat(value), decimals: 0, prefix: "", suffix: "%" };
-  }
-
-  if (value.endsWith("x")) {
-    return { target: Number.parseFloat(value), decimals: 1, prefix: "", suffix: "x" };
-  }
-
-  if (value.includes("hrs")) {
-    return { target: Number.parseFloat(value), decimals: 0, prefix: "", suffix: " hrs" };
-  }
-
-  return { target: Number.parseFloat(value), decimals: 0, prefix: "", suffix: "" };
-}
 
 function AnimatedMetric({ metric }: { metric: ProofMetric }) {
   const { ref, inView } = useInView({ threshold: 0.35 });
@@ -46,14 +26,13 @@ function AnimatedMetric({ metric }: { metric: ProofMetric }) {
 
     let frame = 0;
     let startTime = 0;
-    const duration = 780;
 
     const tick = (time: number) => {
       if (!startTime) {
         startTime = time;
       }
 
-      const progress = Math.min((time - startTime) / duration, 1);
+      const progress = Math.min((time - startTime) / ANIM.METRIC_COUNT_DURATION, 1);
       const eased = 1 - (1 - progress) ** 3;
       setDisplay(parsed.target * eased);
 
@@ -84,14 +63,14 @@ function AnimatedMetric({ metric }: { metric: ProofMetric }) {
 export function ProofSection({ metrics, rows }: ProofSectionProps) {
   return (
     <section id="results" className="section-container section-space">
-      <p className="kicker">Performance</p>
-      <h2 className="mt-3 max-w-3xl text-3xl font-semibold tracking-tight text-white sm:text-4xl">
-        Performance Gains From Teams Running Datalynlabs Systems
-      </h2>
+      <SectionHeader
+        kicker="Performance"
+        title="Performance Gains From Teams Running Datalynlabs Systems"
+      />
 
       <div className="mt-10 grid gap-4 md:grid-cols-3">
         {metrics.map((metric, index) => (
-          <Reveal key={metric.value} delayMs={index * 70}>
+          <Reveal key={metric.value} delayMs={index * ANIM.STAGGER}>
             <AnimatedMetric metric={metric} />
           </Reveal>
         ))}
