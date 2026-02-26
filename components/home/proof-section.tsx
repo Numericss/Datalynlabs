@@ -76,7 +76,31 @@ export function ProofSection({ metrics, rows }: ProofSectionProps) {
         ))}
       </div>
 
-      <Reveal delayMs={120} className="mt-8 overflow-hidden rounded-2xl border border-white/10 bg-[#101520]/75">
+      {/* Mobile comparison — stacked cards (shown below md) */}
+      <Reveal delayMs={120} className="mt-8 space-y-3 md:hidden">
+        {rows.map((row) => (
+          <div key={row.category} className="lift-card p-4">
+            <p className="text-sm font-semibold text-cyan-200">{row.category}</p>
+            <dl className="mt-3 space-y-3">
+              <div>
+                <dt className="text-[0.7rem] font-bold uppercase tracking-[0.1em] text-slate-400">Generalist</dt>
+                <dd className="mt-0.5 text-xs leading-relaxed text-slate-300">{row.generalist}</dd>
+              </div>
+              <div>
+                <dt className="text-[0.7rem] font-bold uppercase tracking-[0.1em] text-slate-400">Template-only</dt>
+                <dd className="mt-0.5 text-xs leading-relaxed text-slate-300">{row.templateOnly}</dd>
+              </div>
+              <div>
+                <dt className="text-[0.7rem] font-bold uppercase tracking-[0.1em] text-slate-400">In-house</dt>
+                <dd className="mt-0.5 text-xs leading-relaxed text-slate-300">{row.inHouse}</dd>
+              </div>
+            </dl>
+          </div>
+        ))}
+      </Reveal>
+
+      {/* Desktop comparison table (shown from md upward) */}
+      <Reveal delayMs={120} className="mt-8 hidden overflow-hidden rounded-2xl border border-white/10 bg-[#101520]/75 md:block">
         <div className="overflow-x-auto">
           <table className="min-w-[720px] w-full border-collapse text-left text-sm">
             <thead>

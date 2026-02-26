@@ -20,7 +20,13 @@
 }
 
 .section-space {
-  padding-block: 3.5rem;
+  padding-block: 2.5rem;
+}
+
+@media (min-width: 640px) {
+  .section-space {
+    padding-block: 3.5rem;
+  }
 }
 
 @media (min-width: 1024px) {

@@ -12,13 +12,25 @@ type StickyNavProps = {
 
 export function StickyNav({ items, bookingUrl }: StickyNavProps) {
   const [scrolled, setScrolled] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 14);
-
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  // Close menu on Escape key or viewport resize
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => { if (e.key === "Escape") setMenuOpen(false); };
+    const onResize = () => setMenuOpen(false);
+    document.addEventListener("keydown", onKey);
+    window.addEventListener("resize", onResize);
+    return () => {
+      document.removeEventListener("keydown", onKey);
+      window.removeEventListener("resize", onResize);
+    };
   }, []);
 
   return (
@@ -42,6 +54,7 @@ export function StickyNav({ items, bookingUrl }: StickyNavProps) {
           <span className="text-sm font-semibold tracking-[0.03em] text-white sm:text-base">Datalynlabs</span>
         </Link>
 
+        {/* Desktop nav links */}
         <nav aria-label="Primary" className="hidden items-center gap-1 text-sm text-slate-300 md:flex">
           {items.map((item) => (
             <a
@@ -54,14 +67,72 @@ export function StickyNav({ items, bookingUrl }: StickyNavProps) {
           ))}
         </nav>
 
-        <a
-          href={bookingUrl}
-          data-cta="nav-primary"
-          aria-label="Book Strategy Call"
-          className="primary-btn px-4"
-        >
-          Book Strategy Call
-        </a>
+        <div className="flex items-center gap-2">
+          {/* Desktop CTA — hidden on mobile (sticky bottom CTA + mobile menu cover this) */}
+          <a
+            href={bookingUrl}
+            data-cta="nav-primary"
+            aria-label="Book Strategy Call"
+            className="primary-btn hidden px-4 md:inline-flex"
+          >
+            Book Strategy Call
+          </a>
+
+          {/* Mobile hamburger / close button */}
+          <button
+            type="button"
+            aria-label={menuOpen ? "Close menu" : "Open menu"}
+            aria-expanded={menuOpen}
+            aria-controls="mobile-nav"
+            onClick={() => setMenuOpen((v) => !v)}
+            className="focus-ring -mr-1 inline-flex h-11 w-11 items-center justify-center rounded-lg text-slate-300 transition-colors hover:text-white md:hidden"
+          >
+            {menuOpen ? (
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden>
+                <path d="M4 4L16 16M16 4L4 16" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+              </svg>
+            ) : (
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden>
+                <rect x="2" y="4.5" width="16" height="1.75" rx="0.875" fill="currentColor" />
+                <rect x="2" y="9.125" width="16" height="1.75" rx="0.875" fill="currentColor" />
+                <rect x="2" y="13.75" width="16" height="1.75" rx="0.875" fill="currentColor" />
+              </svg>
+            )}
+          </button>
+        </div>
+      </div>
+
+      {/* Mobile nav panel — slides down from nav bar */}
+      <div
+        id="mobile-nav"
+        aria-hidden={!menuOpen}
+        className={`absolute inset-x-0 top-full border-b border-white/10 bg-[#0a0a0f]/96 backdrop-blur-xl transition-all duration-200 ease-out md:hidden ${
+          menuOpen
+            ? "pointer-events-auto translate-y-0 opacity-100"
+            : "pointer-events-none -translate-y-1 opacity-0"
+        }`}
+      >
+        <nav aria-label="Mobile" className="section-container flex flex-col py-3">
+          {items.map((item) => (
+            <a
+              key={item.label}
+              href={item.href}
+              onClick={() => setMenuOpen(false)}
+              className="inline-flex min-h-12 items-center border-b border-white/[0.07] text-base font-medium text-slate-300 transition-colors hover:text-white"
+            >
+              {item.label}
+            </a>
+          ))}
+          <a
+            href={bookingUrl}
+            data-cta="mobile-nav-primary"
+            aria-label="Book Strategy Call"
+            onClick={() => setMenuOpen(false)}
+            className="primary-btn mb-2 mt-4 w-full"
+          >
+            Book Strategy Call
+          </a>
+        </nav>
       </div>
     </header>
   );
